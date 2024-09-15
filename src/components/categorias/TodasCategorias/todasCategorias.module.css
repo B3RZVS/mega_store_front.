@@ -1,0 +1,11 @@
+.list{
+    width: 30vh !important;
+    height: auto;
+    max-height: 40vh;
+    background-color: rgba(141, 141, 141, 0.599);
+    overflow: hidden;
+    overflow-y: auto;
+    border-radius: 30px;
+    scrollbar-color:rgba(139, 139, 139, 0.264) rgba(141, 141, 141, 0) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.605);
+}
