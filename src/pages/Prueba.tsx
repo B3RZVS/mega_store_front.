@@ -8,6 +8,7 @@ function Prueba({}: Props) {
 
     return (
       <>
+        <h1>CATEGORIAS</h1>
         <Categorias></Categorias>
       </>
     )
