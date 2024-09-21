@@ -1,25 +1,23 @@
 import React from 'react';
 import "./registrarMarca.css";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+{/*Pantalla ABM marca */}
 
 export const RegistrarMarca: React.FC = () => {
     return (
-        <div className="pantalla">
-            <h2 className="titulo">Registrar marca</h2>
-            <button>
-                <ArrowBackIosIcon />  {/* Agrega el ícono dentro del botón */}
-            </button>
-               
-            <form>
-                <input className="marca" type="text" placeholder="Marca" />
+        <div className="screen"> {/*Pantalla de administración */}
+            <button className="navigation"> < ArrowBackIcon  />  {/* Agrega el ícono dentro del botón */}</button>{/* Botón de navegación */}
+            <h2 className="title">Registrar marca</h2> 
+           <form>
+                <input className="brand" type="text" placeholder="Marca" />
                 <br />
-                <input className="descripcion" type="text" placeholder="Descripción" />
+                <input className="description" type="text" placeholder="Descripción" />
                 <br />
-                <div className="botones">
-                    <button className="boton" type="submit">Registrar</button>
-                    <button className="boton" type="button">Ver marcas</button>
-                </div>
-                
+                <div className="buttons">
+                    <button className="button" type="submit">Registrar</button>
+                    <button className="button" type="button">Ver marcas</button>
+                </div>              
             </form>
         </div>
     );

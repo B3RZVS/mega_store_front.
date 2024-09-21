@@ -7,7 +7,6 @@ function App() {
   
   return (
     <Routes>
-      <Route element={<Prueba />} path="/" />
       <Route element={<Menu/>} path="/menu"/>
       <Route element={<RegistrarMarca/>} path="/registrarMarca"/>
       
