@@ -1,6 +1,4 @@
-import './App.css'
 import { Route, Routes } from 'react-router-dom'; 
-import Prueba from './pages/Prueba';
 import Menu from './components/menu/menu.tsx';
 import { RegistrarMarca } from './components/marca/registrarMarca.tsx';
 
