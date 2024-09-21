@@ -1,4 +1,3 @@
-import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -14,19 +13,20 @@ interface Data {
   fechaEliminacion:Date ;
 }
 export default function CheckboxList() {
-  const [checked, setChecked] = React.useState([0]);
+  const [checked, setChecked] = useState([0]);
   const [data, setData] =useState<Data[]>([]);
 
   //GET
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:9090/products/categorias');
-      const jsonData: Data[] = await response.json();
-      console.log(jsonData)
-      setData(jsonData); 
+      const response = await fetch('http://localhost:8080/products/categorias');
+      const jsonData = await response.json();
+      //console.log(jsonData);
+      setData(jsonData.data); 
     };
 
     fetchData();
+    
   }, []);
 
   const handleToggle = (value: number) => () => {
