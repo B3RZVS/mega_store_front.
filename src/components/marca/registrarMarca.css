@@ -1,0 +1,119 @@
+html, body {
+    height: 100%; /* Asegúrate de que el body tenga altura completa */
+    padding: 0;
+    margin: 0; /* Elimina el margen por defecto del body */
+}
+
+body {
+    display: flex; /* Habilita Flexbox en el body */
+    flex-direction: column;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */    
+    text-align:center;    
+    font-family: Arial, sans-serif; /* Define la tipografía */
+}
+
+.screen { /*pantalla de administración*/
+    border: 3px solid #264b5e;
+    border-radius:25px;
+    height:400px;
+    width: 350px;
+    display:flex; /*para que el contenido se ajuste de forma horizontal*/
+    flex-direction:column; /*flex por defecto los ordena en filas, yo los quiero en columnas*/
+    background-color:#d9d9d9;
+    font-size:15px;
+    overflow: hidden;
+}
+.title{ /*Titulo pantalla administración*/
+    position:relative;
+    color:black;
+    margin-top:40px;
+}
+.title::after { /*Rectángulo debajo del título*/
+    content:"";
+    width:30px;
+    height:5px;
+    border-radius:3px;
+    background-color: #264b5e;
+    position: absolute;
+    bottom:-12px;
+    left: 50%; /* Posiciona el pseudo-elemento a la mitad del ancho del elemento .titulo */
+    transform: translateX(-50%); /* Ajusta la posición para centrar el pseudo-elemento horizontalmente */
+    
+}
+
+input {
+    margin-bottom: 20px; /* Espaciado inferior si el input está seguido por otro elemento */
+    padding: 10px; /* Espaciado interno en el input */
+}
+
+
+form{
+    width:100%;
+    height:100%;
+    font-size: 15px;
+}
+.brand{ /*Input marca*/
+    margin-bottom:20px;
+    margin-top:40px;
+    color:black;
+    background-color:#f9f7f2;
+    border-style: none;
+    border-radius: 20px;
+    text-align:center;
+    font-size:13px;
+    
+}
+.description{ /*input descripción*/
+    height:50px;
+    text-align:center;
+    background-color: #f9f7f2;
+    color:black;
+    text-decoration:none;
+    border:#2C2F35;
+    border-radius: 20px;
+    font-size:13px;
+}
+
+.buttons{ /*Contenedor que incluye a todos los botones*/
+    display:flex;
+    justify-content:Center;
+    gap:20px;
+}
+.button{ /*Ajuste de botones*/
+    margin-top:20px;
+    width:100px;
+    height:40px;
+    color:white; /*color del texto*/
+    background-color: #264b5e;
+    cursor:pointer;
+    border-radius: 15px;
+    border:none;
+    font-size:13px;
+    
+}
+.button:hover{ /*efecto cuando colocamos el cursor sobre el botón*/
+   background-color:#416e84;
+}
+
+
+.navigation{ /*botón de navegación hacia atrás*/
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   background-color:#264b5e;
+   border-radius:50%;
+   width:30px;
+   height: 40px;
+   margin-left: 310px;
+   margin-top: 10px;
+   margin-bottom: -30px;
+   color:white;
+    
+    border-style: none;
+    
+
+}
+.navigation:hover{
+    background-color: #416e84;
+}
