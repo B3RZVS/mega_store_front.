@@ -8,7 +8,7 @@ export const RegistrarMarca: React.FC = () => {
     return (
         <div className="screen"> {/*Pantalla de administración */}
             <button className="navigation"> < ArrowBackIcon  />  {/* Agrega el ícono dentro del botón */}</button>{/* Botón de navegación */}
-            <h2 className="title">Registrar marca</h2> 
+            <h2 className="title">REGISTRAR MARCA</h2> 
            <form>
                 <input className="brand" type="text" placeholder="Marca" />
                 <br />
