@@ -10,9 +10,10 @@ const Menu = () => {
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
     };
+
     return (
     <div className={styles.container}>
-        <header className={styles.header}>
+        <div className={styles.header}>
         <nav className={styles.navbar}>
                 <div className={styles.menuIcon} onClick={toggleMenu}>
                     <span className={styles.burgerLine}></span>
@@ -31,7 +32,7 @@ const Menu = () => {
             </nav>
             <div> <h1 className={styles.title}>MegaStore</h1>
             </div>
-        </header>
+        </div>
 
         <main className={styles.mainContent}> 
             
