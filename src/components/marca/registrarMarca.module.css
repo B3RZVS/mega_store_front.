@@ -1,16 +1,18 @@
-html, body {
-    height: 100%; /* Asegúrate de que el body tenga altura completa */
+
+.body{
+    
+        display: flex; /* Habilita Flexbox en el body */
+        flex-direction: column;
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */    
+        text-align:center;    
+        font-family: Arial, sans-serif; /* Define la tipografía */
+        height: 300%; /* Asegúrate de que el body tenga altura completa */
     padding: 0;
     margin: 0; /* Elimina el margen por defecto del body */
-}
-
-body {
-    display: flex; /* Habilita Flexbox en el body */
-    flex-direction: column;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */    
-    text-align:center;    
-    font-family: Arial, sans-serif; /* Define la tipografía */
+    width:100%;
+    background-color: black;
+    
 }
 
 .screen { /*pantalla de administración*/
@@ -23,6 +25,7 @@ body {
     background-color:white;
     font-size:15px;
     overflow: hidden;
+    margin:100px;
 }
 .title{ /*Titulo pantalla administración*/
     position:relative;
@@ -53,11 +56,12 @@ form{
     height:100%;
     font-size: 15px;
 }
+
 .brand{ /*Input marca*/
     margin-bottom:20px;
     margin-top:40px;
     color:black;
-    background-color:#f9f7f2;
+    background-color:#e4e2e0;
     border-style: none;
     border-radius: 20px;
     text-align:center;
@@ -68,7 +72,7 @@ form{
 .description{ /*input descripción*/
     height:50px;
     text-align:center;
-    background-color: #f9f7f2;
+    background-color: #e4e2e0;
     color:black;
     text-decoration:none;
     border:#2C2F35;
@@ -95,7 +99,7 @@ form{
     
 }
 .button:hover{ /*efecto cuando colocamos el cursor sobre el botón*/
-   background-color:#416e84;
+   background-color:#8662fc;
    box-shadow: 0 0 7px 2px rgba(0, 123, 255, 0.5);
 }
 
@@ -118,6 +122,23 @@ form{
 
 }
 .navigation:hover{
-    background-color: #416e84;
+    background-color: #8662fc;
     box-shadow: 0 0 7px 2px rgba(0, 123, 255, 0.5);
+}
+
+.alerts {
+    font-size: 10px;
+    color:red;
+    margin-top:-10px;
+    margin-bottom:0px;
+    
+
+}
+.alerts2 {
+    font-size: 10px;
+    color:red;
+    position:absolute;
+   top:59%;
+   left:41%;
+
 }
