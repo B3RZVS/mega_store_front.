@@ -1,0 +1,72 @@
+import React from 'react';
+import style from "./registrarMarca.module.css";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+// Importacón del hook useForm de React Hook Form, que permite manejar formularios
+import {useForm} from 'react-hook-form';
+// Importación de zodResolver, que conecta Zod con React Hook Form para validar los datos del formulario
+import {zodResolver} from '@hookform/resolvers/zod';
+// Importación del esquema de validación userSchema definido en un archivo separado
+import { validationsABM } from '../../validations/validationsABM';
+
+
+
+
+{/*Pantalla ABM marca */}
+type Inputs={
+    marca:string; //definimos que marca es un string
+   
+}
+
+
+
+const RegistrarMarca: React.FC = () => {
+    const { 
+        register, // Función para registrar los campos del formulario y sus validaciones
+        handleSubmit, // Función que maneja el evento de envío del formulario
+        formState: { errors } // Objeto que contiene el estado del formulario, incluyendo los errores de validación
+    } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
+        resolver: zodResolver(validationsABM), // Usamos zodResolver para integrar validaciones definidas en el esquema 'userSchema'
+    });
+    console.log(errors)
+
+    // Función para manejar el envío del formulario
+    const onSubmit = async (data: Inputs) => {
+        try {
+            // Realiza la solicitud fetch para registrar la marca
+            const response = await fetch('', { // Ajusta la URL según tu API
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), // Envía los datos validados como un JSON
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al registrar la marca'); // Lanza un error si la respuesta no es OK
+            }
+
+            const result = await response.json(); // Maneja la respuesta JSON del servidor
+            console.log('Marca registrada con éxito:', result); // Muestra el resultado en la consola
+        } catch (error) {
+            alert(error.message || "Error al registrar la marca"); // Muestra un mensaje de error
+        }
+    };
+    return (
+        <div className={style.body}>
+           <form className= {style.form} onSubmit={handleSubmit(data=>{console.log(data)})}>
+                <h3 className={style.title}>Registrar Marca</h3> 
+                <div className={style.container}>
+                <input className={style.brand} type="text" placeholder="Marca" {...register('marca')} />
+                {
+                errors.marca?.message &&<p className={style.alerts}>{errors.marca?.message}</p> /*// Verificamos si hay un mensaje de error asociado al campo 'marca', si lo hay mostramos el mensaje */
+                }
+                </div>
+                <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
+            </form>
+        </div>
+    );
+};
+export default RegistrarMarca;
+
+ 

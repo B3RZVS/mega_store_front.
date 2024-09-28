@@ -1,8 +1,11 @@
-import styles from './menu.module.css';
-import AccordionUsage from './acordion';
+{/*Importación de estilos*/}
+import styles from './menuAdmin.module.css';
+{/*Importación del acordeón para el desplegable*/}
+import AccordionUsage from '../menu/acordion';
+
 import { useState } from 'react';
+{/*Importación de íconos utilizados desde mui*/}
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import PersonIcon from '@mui/icons-material/Person';
 
 
@@ -25,19 +28,19 @@ const Menu = () => {
             <img src="logo.png" alt="Logo" width="100" height="60" /> {/* Ajusta el tamaño según sea necesario */}
             <div className={styles.container2}>
                 <button className={styles.options} onMouseEnter={toggleMenu}  > < DensityMediumIcon />  {/* Agrega el ícono dentro del botón */}</button>{/* Botón de navegación */} 
-                {/* Contenido del menú que se muestra/oculta según el estado */}
+            
+            {/* Contenido del menú que se muestra/oculta según el estado */}
                 {isMenuOpen && (
                     <div className={styles.dropdownContent}onMouseLeave={closeMenu}>
                     <AccordionUsage />
                     </div>   
                 )}
             </div> 
-            <h1 className={styles.title}>MegaStore</h1> 
+            <h1 className={styles.title}>MegaStore - Panel de Administración</h1> 
             <div className={styles.components}>
-                <div className={styles.seleccion}> < LocalGroceryStoreIcon /> </div>
-                <div className={styles.seleccion}> < PersonIcon /></div>
-                <div className={styles.seleccion2}>About us</div>
-                <div className={styles.seleccion2}>Contacto</div>
+                <div className={styles.seleccion1}> < PersonIcon /></div>
+                <div className={styles.seleccion2}>Productos</div>
+                <div className={styles.seleccion2}>Sucursales</div>
             </div>
         </div>
 

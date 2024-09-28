@@ -1,0 +1,59 @@
+.footer{
+    
+    background-color: #c99af3;
+    color:white;
+    text-align: center;
+    justify-content: center;
+    height:50px;
+    width:100%;
+    position:fixed;
+    bottom:0%;
+   
+}
+.container{
+    display:flex;
+    align-items: center;
+    gap:100px;
+    text-align: center;
+    justify-content: center;
+    height:50px;
+}
+.options{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+    transition: 0.25s;
+    border-radius: 50px;
+}
+
+.options:hover{
+    background-color: #a27eea;;
+    animation: animacionFooter 0.4s linear;
+    transform: scale(1);
+}
+title{
+    height: 50px;
+    color:black;
+    
+}
+
+/*para hacer la animación*/
+@keyframes animacionFooter {
+    40% {
+      transform: scale(1.4);
+    }
+  
+    60% {
+      transform: scale(0.8);
+    }
+  
+    80% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }

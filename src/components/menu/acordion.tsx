@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 export default function AccordionUsage() {
   const entidades = [
     {"nombre": "Marca", "ruta": "/registrarMarca"},
-    {"nombre": "Sucursal", "ruta": "/menu"},
-    {"nombre": "Color", "ruta": "/menu"},
-    {"nombre": "Talle", "ruta": "/menu"},
+    {"nombre": "Sucursal", "ruta": "/registrarSucursal"},
+    {"nombre": "Color", "ruta": "/registrarColor"},
+    {"nombre": "Talle", "ruta": "/registrarTalle"},
+    {"nombre": "Categoría", "ruta": "/registrarCategoria"},
   ]
   const navigate = useNavigate(); // Hook para navegar a otras rutas
   
