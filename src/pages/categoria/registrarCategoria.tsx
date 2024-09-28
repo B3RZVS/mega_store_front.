@@ -20,6 +20,29 @@ import {validationsABM} from '../../validations/validationsABM';
 type Inputs={  // Definimos que color es un campo de texto, y es lo que se va a esperar en el form
     categoria:string;
 }
+const onSubmit = async (data: Inputs) => {
+    try {
+        const response = await fetch('http://localhost:8080/products/categoria', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al registrar la categoría: ' + response.statusText);
+        }
+
+        const result = await response.json();
+        console.log('Categoría registrada con éxito:', result);
+    } catch (error) {
+        // Aquí usamos un tipo de aserción para definir que error es de tipo Error
+        const message = (error as Error).message || 'Error desconocido';
+        console.error('Error desconocido:', error);
+        alert('Ocurrió un error al registrar la categoría: ' + message);
+    }
+};
 
 
 const RegistrarCategoria: React.FC = () => {
@@ -32,7 +55,7 @@ const RegistrarCategoria: React.FC = () => {
     });
     return (
         <div className={style.body}> 
-           <form className= {style.form}  >
+           <form className= {style.form} onSubmit={handleSubmit(onSubmit)}  >
                 <h3 className={style.title}>Registrar Categoría</h3> 
                 <div className={style.container}>
                     <input className={style.category} type="text" placeholder="Categoría" {...register('categoria')} /> {/** Usamos la función 'register' para vincular este campo al formulario y habilitar su validación*/} 

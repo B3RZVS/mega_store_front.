@@ -31,27 +31,6 @@ const RegistrarMarca: React.FC = () => {
     console.log(errors)
 
     // Función para manejar el envío del formulario
-    const onSubmit = async (data: Inputs) => {
-        try {
-            // Realiza la solicitud fetch para registrar la marca
-            const response = await fetch('', { // Ajusta la URL según tu API
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data), // Envía los datos validados como un JSON
-            });
-
-            if (!response.ok) {
-                throw new Error('Error al registrar la marca'); // Lanza un error si la respuesta no es OK
-            }
-
-            const result = await response.json(); // Maneja la respuesta JSON del servidor
-            console.log('Marca registrada con éxito:', result); // Muestra el resultado en la consola
-        } catch (error) {
-            alert(error.message || "Error al registrar la marca"); // Muestra un mensaje de error
-        }
-    };
     return (
         <div className={style.body}>
            <form className= {style.form} onSubmit={handleSubmit(data=>{console.log(data)})}>
