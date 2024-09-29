@@ -8,10 +8,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 //Importación del esquema de validaciones de categoría
 import { validationsCategoria } from './validationsCategoria';
+import ListaCategoria from '../../components/categorias/TodasCategorias/TodasCategorias'
 
 // Definición de los tipos que se esperan en el formulario
 type Inputs = {
-  categoria: string;
+  nombre: string;
 };
 
 
@@ -49,6 +50,7 @@ const RegistrarCategoria: React.FC = () => {
     }
   };
 
+
   return (
     <div className={style.body}>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -58,17 +60,18 @@ const RegistrarCategoria: React.FC = () => {
             className={style.category} 
             type="text" 
             placeholder="Categoría" 
-            {...register('categoria')}  // Vinculamos el input a react-hook-form
+            {...register('nombre')}  // Vinculamos el input a react-hook-form
           />
           {
-            errors.categoria?.message && 
-            <p className={style.alerts}>{errors.categoria.message}</p> // Mostramos el error si existe
+            errors.nombre?.message && 
+            <p className={style.alerts}>{errors.nombre.message}</p> // Mostramos el error si existe
           }
         </div>
         <button className={style.button} type="submit">
           <ArrowForwardIcon />Registrar
         </button>
       </form>
+      <ListaCategoria></ListaCategoria>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import {z} from 'zod'
 //usamos esto para comparar lo que nos ingresen en cada campo del form
 export const validationsMarca=z.object({
-marca:z
+nombre:z
     
 .string()
 .trim() // Eliminar espacios en blanco al inicio y al final

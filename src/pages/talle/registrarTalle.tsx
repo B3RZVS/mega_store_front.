@@ -9,9 +9,12 @@ import {zodResolver} from '@hookform/resolvers/zod';
 //importamos el esquema de validaciones de talle
 import { validationsTalle } from './validationsTalle'
 
+//Componete Get talles
+import ListaTalles from "./getTalles"
+
 //definimos los tipos que va a recibir el formulario
 type Inputs={
-    talle:string;
+    nombre:string;
     
 }
 
@@ -24,20 +27,44 @@ const RegistrarTalle: React.FC = () => {
         resolver: zodResolver(validationsTalle), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsTalle
     });
 
-    console.log(errors) //imprimimos los errores por consola
+    // Función que maneja la consulta al back me
+  const onSubmit = async (data: Inputs) => {
+    try {
+      // Enviamos la información al servidor mediante una llamada fetch
+      const response = await fetch('http://localhost:8080/products/talle', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), //convertimos los datos recibidos en .json
+      });
+
+      if (!response.ok) { //si hay un error
+        throw new Error('Error al registrar el talle: ' + response.statusText);
+      }
+
+      const result = await response.json();
+      console.log('Talle registrada con éxito:', result);
+    } catch (error) {
+      const message = (error as Error).message || 'Error desconocido';
+      console.error('Error desconocido:', error);
+      alert('Ocurrió un error al registrar el talle: ' + message);
+    }
+  };
     
     return (
         <div className={style.body}>
-          <form className= {style.form} onSubmit={handleSubmit(data=>{console.log(data)})}>
+          <form className= {style.form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={style.title}>Registrar Talle</h3> 
                 <div className={style.container}>
-                <input className={style.size} type="text" placeholder="Talle" {...register('talle')} />
+                <input className={style.size} type="text" placeholder="Talle" {...register('nombre')} />
                 {
-                errors.talle?.message &&<p className={style.alerts}>{errors.talle?.message}</p> //si hay errores los muestra por pantalla
+                errors.nombre?.message &&<p className={style.alerts}>{errors.nombre?.message}</p> //si hay errores los muestra por pantalla
                 }
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
             </form>
+            <ListaTalles></ListaTalles>
         </div>
     );
 };

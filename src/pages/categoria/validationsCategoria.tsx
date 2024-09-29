@@ -1,7 +1,7 @@
 import {z} from 'zod'
 export const validationsCategoria=z.object({ //creamos el objeto z 
     //definimos las validaciones para categoria
-    categoria:z
+    nombre:z
         .string()
         .trim() // Eliminar espacios en blanco al inicio y al final
         .min(3, { message: 'Categoría debe tener al menos 3 caracteres.' })

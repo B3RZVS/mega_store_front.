@@ -1,7 +1,7 @@
 import {z} from 'zod'
 //usamos esto para comparar lo que nos ingresen en cada campo del form
 export const validationsSucursal=z.object({
-sucursal:z
+nombre:z
     .string()
     .max(200,{message:'Sucursal no debe superar los 200 caracteres'})
     .min(2, { message: 'Sucursal no puede estar vacío.' })

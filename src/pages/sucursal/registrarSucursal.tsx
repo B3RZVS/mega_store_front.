@@ -9,9 +9,12 @@ import {zodResolver} from '@hookform/resolvers/zod';
 //Importación del esquema de validaciones de sucursal
 import { validationsSucursal } from './validationsSucursal';
 
+//Get de sucursales
+import ListaSucursales from './getSucursal'
+
 //Definición de los tipos de datos que va a recibir el formulario
 type Inputs={
-    sucursal:string;
+    nombre:string;
     descripcion:string;
 }
 
@@ -23,16 +26,40 @@ const RegistrarSucursal: React.FC = () => {
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
         resolver: zodResolver(validationsSucursal), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsSucursal
     });
-    console.log(errors) //para ver los errores de validación por consola
+    
+    // Función que maneja la consulta al back me
+  const onSubmit = async (data: Inputs) => {
+    try {
+      // Enviamos la información al servidor mediante una llamada fetch
+      const response = await fetch('http://localhost:8080/products/sucursal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), //convertimos los datos recibidos en .json
+      });
+
+      if (!response.ok) { //si hay un error
+        throw new Error('Error al registrar la sucursal: ' + response.statusText);
+      }
+
+      const result = await response.json();
+      console.log('Sucursal registrada con éxito:', result);
+    } catch (error) {
+      const message = (error as Error).message || 'Error desconocido';
+      console.error('Error desconocido:', error);
+      alert('Ocurrió un error al registrar la sucursal: ' + message);
+    }
+  };
     
     return (
         <div className={style.body}>
-           <form className= {style.form} onSubmit={handleSubmit(data=>{console.log(data)})}>
+           <form className= {style.form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={style.title}>Registrar Sucursal</h3>
                 <div className={style.container}>
-                    <input className={style.store} type="text" placeholder="Sucursal" {...register('sucursal')} />
+                    <input className={style.store} type="text" placeholder="Sucursal" {...register('nombre')} />
                     {
-                    errors.sucursal?.message &&<p className={style.alerts}>{errors.sucursal?.message}</p> //si hay errores, los muestra por pantalla
+                    errors.nombre?.message &&<p className={style.alerts}>{errors.nombre?.message}</p> //si hay errores, los muestra por pantalla
                     }  
                 </div> 
                 <div className={style.container}>
@@ -44,6 +71,7 @@ const RegistrarSucursal: React.FC = () => {
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>   
             </form>
+            <ListaSucursales></ListaSucursales>
         </div>
     );
 };

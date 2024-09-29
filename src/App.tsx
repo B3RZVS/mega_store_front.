@@ -8,11 +8,13 @@ import RegistrarTalle from'./pages/talle/registrarTalle';
 import RegistrarColor from'./pages/color/registrarColor'; 
 import RegistrarCategoria from'./pages/categoria/registrarCategoria'; 
 
+
 export function App() {
   return (
   <Router>
     <MenuAdmin/> 
       <Routes>
+
         <Route path="/registrarMarca" element={<RegistrarMarca />} />
         <Route path="/registrarSucursal" element={<RegistrarSucursal />} />
         <Route path="/registrarTalle" element={<RegistrarTalle />} />

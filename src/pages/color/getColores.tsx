@@ -2,7 +2,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-import Style from "./todasCategorias.module.css"
+import Style from "../../components/categorias/TodasCategorias/todasCategorias.module.css"
 import { useEffect, useState } from 'react';
 
 interface Data {
@@ -17,7 +17,7 @@ export default function CheckboxList() {
   //GET
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:8080/products/categorias');
+      const response = await fetch('http://localhost:8080/products/colores');
       const jsonData = await response.json();
       //console.log(jsonData);
       setData(jsonData.data); 
@@ -32,7 +32,7 @@ export default function CheckboxList() {
 
     <List className={Style.list}>
 
-      {(data ?? [1,2,3]).map ((categoria, idx) => {
+      {(data ?? [1,2,3]).map ((color, idx) => {
 
         const labelId = `checkbox-list-label-${idx}`;
 
@@ -42,7 +42,7 @@ export default function CheckboxList() {
             disablePadding
             className={Style.contCategorias}
           > 
-              <ListItemText id={labelId} primary={`${categoria.nombre}`} className={Style.item}/>
+              <ListItemText id={labelId} primary={`${color.nombre}`} className={Style.item} />
           </ListItem>
         );
       })}

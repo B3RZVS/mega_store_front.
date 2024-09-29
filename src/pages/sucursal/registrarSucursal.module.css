@@ -9,7 +9,9 @@ body {
     display: flex; /* Habilita Flexbox en el body */
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */    
-    text-align:center;    
+    text-align:center; 
+    flex-direction: column;
+    gap: 30px;   
     font-family: lato; /* Define la tipografía */
    
 }

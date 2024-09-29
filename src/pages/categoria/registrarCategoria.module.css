@@ -7,6 +7,8 @@ body {
 .body{
     
     display: flex; /* Habilita Flexbox en el body */
+    flex-direction: column;
+    gap: 50px;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */    
     text-align:center;    

@@ -13,10 +13,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 // Importación del esquema de validación para color
 import {validationsColor} from './validationsColor';
 
+//Componente del Get de colores
+import ListaColores from "./getColores"
+
 
 //Definición de los tipos de datos que recibirá el formulario
 type Inputs={  
-    color:string;
+    nombre:string;
 }
 
 const RegistrarColor: React.FC = () => {
@@ -28,20 +31,44 @@ const RegistrarColor: React.FC = () => {
         resolver: zodResolver(validationsColor), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsColor
     });
 
-    console.log(errors)
+    //POST
+    const onSubmit = async (data: Inputs) => {
+        try {
+          // Enviamos la información al servidor mediante una llamada fetch
+          const response = await fetch('http://localhost:8080/products/color', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data), //convertimos los datos recibidos en .json
+          });
+    
+          if (!response.ok) { //si hay un error
+            throw new Error('Error al registrar el color: ' + response.statusText);
+          }
+    
+          const result = await response.json();
+          console.log('Color registrada con éxito:', result);
+        } catch (error) {
+          const message = (error as Error).message || 'Error desconocido';
+          console.error('Error desconocido:', error);
+          alert('Ocurrió un error al registrar el color: ' + message);
+        }
+      };
     
     return (
         <div className={style.body}> 
-           <form className= {style.form} onSubmit={handleSubmit(data=>{console.log(data)})}>
+           <form className= {style.form} onSubmit={handleSubmit(onSubmit)}>
                 <h3 className={style.title}>Registrar Color</h3> 
                 <div className={style.container}>
-                    <input className={style.color} type="text" placeholder="Color" {...register('color')} /> {/** Usamos la función 'register' para vincular este campo al formulario y habilitar su validación*/} 
+                    <input className={style.color} type="text" placeholder="Color" {...register('nombre')} /> {/** Usamos la función 'register' para vincular este campo al formulario y habilitar su validación*/} 
                     {
-                    errors.color?.message && <p className={style.alerts}>{errors.color?.message}</p> /*// Verificamos si hay un mensaje de error asociado al campo 'color', si lo hay mostramos el mensaje */
+                    errors.nombre?.message && <p className={style.alerts}>{errors.nombre?.message}</p> /*// Verificamos si hay un mensaje de error asociado al campo 'color', si lo hay mostramos el mensaje */
                     } 
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
             </form>
+            <ListaColores></ListaColores>
         </div>
     
     );  
