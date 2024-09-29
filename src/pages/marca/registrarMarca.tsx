@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 //Importación de estilos
 import style from "./registrarMarca.module.css";
 //Importación de iconos utilizados desde mui
@@ -29,7 +29,7 @@ const RegistrarMarca: React.FC = () => {
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
         resolver: zodResolver(validationsMarca), // Usamos zodResolver para integrar validaciones definidas en el esquema 'userSchema'
     });
-
+    const [refresh, setRefresh] = useState(false);
     // Función que maneja la consulta al back me
   const onSubmit = async (data: Inputs) => {
     try {
@@ -48,6 +48,7 @@ const RegistrarMarca: React.FC = () => {
 
       const result = await response.json();
       console.log('Marca registrada con éxito:', result);
+      setRefresh(!refresh);
     } catch (error) {
       const message = (error as Error).message || 'Error desconocido';
       console.error('Error desconocido:', error);
@@ -68,7 +69,7 @@ const RegistrarMarca: React.FC = () => {
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
             </form>
-            <ListaMarcas></ListaMarcas>
+            <ListaMarcas refresh={refresh}></ListaMarcas>
         </div>
     );
 };

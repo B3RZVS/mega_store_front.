@@ -10,7 +10,7 @@ interface Data {
   nombre: string;
   fechaEliminacion:Date ;
 }
-export default function CheckboxList() {
+export default function CheckboxList({ refresh }: { refresh: boolean }) {
 
   const [data, setData] =useState<Data[]>([]);
 
@@ -22,10 +22,9 @@ export default function CheckboxList() {
       //console.log(jsonData);
       setData(jsonData.data); 
     };
-
     fetchData();
     
-  }, []);
+  }, [refresh]);
 
 
   return (

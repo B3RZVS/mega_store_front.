@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 //importamos los estilos
 import style from "./registrarTalle.module.css";
 //importamos los iconos utilizados desde mui
@@ -27,6 +27,7 @@ const RegistrarTalle: React.FC = () => {
         resolver: zodResolver(validationsTalle), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsTalle
     });
 
+    const [refresh, setRefresh] = useState(false);
     // Función que maneja la consulta al back me
   const onSubmit = async (data: Inputs) => {
     try {
@@ -45,6 +46,7 @@ const RegistrarTalle: React.FC = () => {
 
       const result = await response.json();
       console.log('Talle registrada con éxito:', result);
+      setRefresh(!refresh);
     } catch (error) {
       const message = (error as Error).message || 'Error desconocido';
       console.error('Error desconocido:', error);
@@ -64,7 +66,7 @@ const RegistrarTalle: React.FC = () => {
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
             </form>
-            <ListaTalles></ListaTalles>
+            <ListaTalles refresh={refresh}></ListaTalles>
         </div>
     );
 };

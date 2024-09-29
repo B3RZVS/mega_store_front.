@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //Importación de los estilos
 import style from "./registrarSucursal.module.css";
 //Importación de los íconos utilizados desde mui
@@ -26,6 +26,8 @@ const RegistrarSucursal: React.FC = () => {
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
         resolver: zodResolver(validationsSucursal), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsSucursal
     });
+
+    const [refresh, setRefresh] = useState(false);
     
     // Función que maneja la consulta al back me
   const onSubmit = async (data: Inputs) => {
@@ -45,6 +47,7 @@ const RegistrarSucursal: React.FC = () => {
 
       const result = await response.json();
       console.log('Sucursal registrada con éxito:', result);
+      setRefresh(!refresh);      
     } catch (error) {
       const message = (error as Error).message || 'Error desconocido';
       console.error('Error desconocido:', error);
@@ -71,7 +74,7 @@ const RegistrarSucursal: React.FC = () => {
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>   
             </form>
-            <ListaSucursales></ListaSucursales>
+            <ListaSucursales refresh={refresh}></ListaSucursales>
         </div>
     );
 };

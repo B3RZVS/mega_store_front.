@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 //Importación de estilos
 import style from "./registrarColor.module.css";
 //importación de iconos desde mui
@@ -30,7 +30,7 @@ const RegistrarColor: React.FC = () => {
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
         resolver: zodResolver(validationsColor), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsColor
     });
-
+    const [refresh, setRefresh] = useState(false);
     //POST
     const onSubmit = async (data: Inputs) => {
         try {
@@ -49,6 +49,7 @@ const RegistrarColor: React.FC = () => {
     
           const result = await response.json();
           console.log('Color registrada con éxito:', result);
+          setRefresh(!refresh);
         } catch (error) {
           const message = (error as Error).message || 'Error desconocido';
           console.error('Error desconocido:', error);
@@ -68,7 +69,7 @@ const RegistrarColor: React.FC = () => {
                 </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>       
             </form>
-            <ListaColores></ListaColores>
+            <ListaColores refresh={refresh}></ListaColores>
         </div>
     
     );  
