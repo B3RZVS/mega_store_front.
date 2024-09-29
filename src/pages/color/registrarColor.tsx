@@ -1,26 +1,23 @@
 import React from 'react';
-{/*Importación de estilos*/}
+//Importación de estilos
 import style from "./registrarColor.module.css";
-{/*importación de iconos desde mui */}
+//importación de iconos desde mui
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-//importación de componentes usados para las validaciones 
-// Importacón del hook useForm de React Hook Form, que permite manejar formularios
+// Importación del hook useForm de React Hook Form, que permite manejar formularios
 import { useForm } from 'react-hook-form';
 
 // Importación de zodResolver, que conecta Zod con React Hook Form para validar los datos del formulario
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// Importación del esquema de validación userSchema definido en un archivo separado
-import {validationsABM} from '../../validations/validationsABM';
+// Importación del esquema de validación para color
+import {validationsColor} from './validationsColor';
 
-{/*Pantalla ABM Color */}
 
-type Inputs={  // Definimos que color es un campo de texto, y es lo que se va a esperar en el form
+//Definición de los tipos de datos que recibirá el formulario
+type Inputs={  
     color:string;
 }
-
-
 
 const RegistrarColor: React.FC = () => {
     const { 
@@ -28,7 +25,7 @@ const RegistrarColor: React.FC = () => {
         handleSubmit, // Función que maneja el evento de envío del formulario
         formState: { errors } // Objeto que contiene el estado del formulario, incluyendo los errores de validación
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
-        resolver: zodResolver(validationsABM), // Usamos zodResolver para integrar validaciones definidas en el esquema 'userSchema'
+        resolver: zodResolver(validationsColor), // Usamos zodResolver para integrar validaciones definidas en el esquema validationsColor
     });
 
     console.log(errors)
@@ -49,7 +46,7 @@ const RegistrarColor: React.FC = () => {
     
     );  
 
-};
+}
 export default RegistrarColor;
 
  

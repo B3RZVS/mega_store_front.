@@ -1,24 +1,23 @@
 import React from 'react';
+//Importación de estilos
 import style from "./registrarMarca.module.css";
+//Importación de iconos utilizados desde mui
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
 // Importacón del hook useForm de React Hook Form, que permite manejar formularios
 import {useForm} from 'react-hook-form';
 // Importación de zodResolver, que conecta Zod con React Hook Form para validar los datos del formulario
 import {zodResolver} from '@hookform/resolvers/zod';
-// Importación del esquema de validación userSchema definido en un archivo separado
-import { validationsABM } from '../../validations/validationsABM';
+// Importación del esquema de validaciones de marca
+import { validationsMarca} from './validationsMarca';
 
 
 
 
-{/*Pantalla ABM marca */}
+//Definición los tipos de datos que recibirá el formulario
 type Inputs={
     marca:string; //definimos que marca es un string
    
 }
-
-
 
 const RegistrarMarca: React.FC = () => {
     const { 
@@ -26,7 +25,7 @@ const RegistrarMarca: React.FC = () => {
         handleSubmit, // Función que maneja el evento de envío del formulario
         formState: { errors } // Objeto que contiene el estado del formulario, incluyendo los errores de validación
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
-        resolver: zodResolver(validationsABM), // Usamos zodResolver para integrar validaciones definidas en el esquema 'userSchema'
+        resolver: zodResolver(validationsMarca), // Usamos zodResolver para integrar validaciones definidas en el esquema 'userSchema'
     });
     console.log(errors)
 
