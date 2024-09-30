@@ -20,7 +20,9 @@ type Inputs={
 
 const RegistrarSucursal: React.FC = () => {
     const { 
-        register, // Función para registrar los campos del formulario y sus validaciones
+        register,
+        reset,
+        setError, // Función para registrar los campos del formulario y sus validaciones
         handleSubmit, // Función que maneja el evento de envío del formulario
         formState: { errors } // Objeto que contiene el estado del formulario, incluyendo los errores de validación
     } = useForm<Inputs>({ // Inicializamos useForm con un tipo genérico 'Inputs' para tipar los datos del formulario
@@ -42,15 +44,29 @@ const RegistrarSucursal: React.FC = () => {
       });
 
       if (!response.ok) { //si hay un error
-        throw new Error('Error al registrar la sucursal: ' + response.statusText);
-      }
+        const errorData = await response.json(); // Captura la respuesta del error
+        console.log(errorData);
 
-      const result = await response.json();
-      console.log('Sucursal registrada con éxito:', result);
-      setRefresh(!refresh);      
-    } catch (error) {
-      const message = (error as Error).message || 'Error desconocido';
-      console.error('Error desconocido:', error);
+        if (errorData && errorData.errors) { //si existe un error desde el back
+            setError('nombre', { 
+            type: 'manual',
+            message: errorData.errors,   //recuperamos el atributo errors del json, que es el que contiene el mensaje de error desde el back
+          });
+          
+          alert(errorData.errors); // Muestra el mensaje de error en una alerta
+        } else {
+          alert('Error desconocido'); //si el error no coincide con ninguno del back, es error desconcido
+        }
+        return;
+      }
+      else{ //si no hay errores
+        reset() //limpiamos el input
+        alert("Sucursal registrada con éxito") //mensaje de éxito
+        setRefresh(!refresh); //cambia el estado refresh 
+      }
+    } catch (errors) {
+      const message = (errors as Error).message || 'Error desconocido';
+      console.error('Error desconocido:', errors);
       alert('Ocurrió un error al registrar la sucursal: ' + message);
     }
   };
@@ -58,20 +74,13 @@ const RegistrarSucursal: React.FC = () => {
     return (
         <div className={style.body}>
            <form className= {style.form} onSubmit={handleSubmit(onSubmit)}>
-                <h3 className={style.title}>Registrar Sucursal</h3>
+                <h3 className={style.title}>Nueva Sucursal</h3>
                 <div className={style.container}>
                     <input className={style.store} type="text" placeholder="Sucursal" {...register('nombre')} />
                     {
                     errors.nombre?.message &&<p className={style.alerts}>{errors.nombre?.message}</p> //si hay errores, los muestra por pantalla
                     }  
                 </div> 
-                <div className={style.container}>
-                <input className={style.store} type="text" placeholder="Descripción" {...register('descripcion')} />
-                    {
-                    errors.descripcion?.message &&<p className={style.alerts}>{errors.descripcion?.message}</p> //si hay errores los muestra por pantalla
-                    }
-                
-                </div>
                 <button className={style.button} type="submit" >< ArrowForwardIcon />Registrar</button>   
             </form>
             <ListaSucursales refresh={refresh}></ListaSucursales>

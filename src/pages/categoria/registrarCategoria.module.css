@@ -7,11 +7,11 @@ body {
 .body{
     
     display: flex; /* Habilita Flexbox en el body */
-    flex-direction: column;
-    gap: 50px;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */    
     text-align:center;    
+    flex-direction: column;
+    gap: 30px;
     font-family: lato; /* Define la tipografía */
    
 }
@@ -66,7 +66,7 @@ input {/* Espaciado inferior si el input está seguido por otro elemento */
     transform: translateX(5px);
 }
             
-.container1{
+.container{
     display: flex;
     justify-content: center;
     text-align:center;
@@ -74,14 +74,7 @@ input {/* Espaciado inferior si el input está seguido por otro elemento */
     flex-direction:column;
     padding:0;
 }
-.container2{
-    display: flex;
-    justify-content: center;
-    text-align:center;
-    align-items: center;
-    flex-direction:column;
-    padding:0;
-}
+
           
 .alerts {
     font-size: 10px;
@@ -93,11 +86,3 @@ input {/* Espaciado inferior si el input está seguido por otro elemento */
     top:165px;
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-    text-align:center;
-    align-items: center;
-    flex-direction:column;
-    padding:0;
-}

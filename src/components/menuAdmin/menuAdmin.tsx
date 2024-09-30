@@ -41,6 +41,7 @@ const Menu = () => {
                 <div className={styles.seleccion1}> < PersonIcon /></div>
                 <div className={styles.seleccion2}>Productos</div>
                 <div className={styles.seleccion2}>Sucursales</div>
+                <div className={styles.seleccion2}>Estadísticas</div>
             </div>
         </div>
 

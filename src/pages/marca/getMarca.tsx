@@ -1,8 +1,7 @@
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-
-import Style from "../../components/categorias/TodasCategorias/todasCategorias.module.css"
+import Style from '../../components/categorias/todasCategorias.module.css';
 import { useEffect, useState } from 'react';
 
 interface Data {

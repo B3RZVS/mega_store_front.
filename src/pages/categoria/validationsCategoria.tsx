@@ -3,12 +3,11 @@ export const validationsCategoria=z.object({ //creamos el objeto z
     //definimos las validaciones para categoria
     nombre:z
         .string()
-        .trim() // Eliminar espacios en blanco al inicio y al final
-        .min(3, { message: 'Categoría debe tener al menos 3 caracteres.' })
-        .regex(/^[a-zA-Z0-9\s]+$/, { message: 'Categoría no puede contener caracteres especiales.' })
-        .regex(/^(?!.*\s{2,}).*$/, {
-            message: "Categoría no puede contener espacios consecutivos"
-        }),
+        .min(1, { message: 'Categoría no puede estar vacío.' })
+        .max(100,{message: 'Categoría no puede superar los 100 caracteres'})
+        .regex(/^[A-Za-z0-9áéíóúÁÉÍÓÚ\s]+$/,{ message: 'Categoría contiene caracteres no permitidos.' })
+        .regex(/^(?!.*\s{2,}).*$/, { message: "Categoría no puede contener espacios consecutivos"})
+        .refine((val) => !(val.length === 1 && val === ' '), { message: 'Categoría no puede estar vacío.' }) 
 });
 
  

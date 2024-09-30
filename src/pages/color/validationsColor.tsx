@@ -3,10 +3,9 @@ export const validationsColor=z.object({
     //definimos las validaciones para color
     nombre:z
       .string()
-      .trim() // Eliminar espacios en blanco al inicio y al final
-      .min(3, { message: 'Color debe tener al menos 3 caracteres.' })
-      .regex(/^[a-zA-Z0-9\s]+$/, { message: 'Color no puede contener caracteres especiales.' })
-      .regex(/^(?!.*\s{2,}).*$/, {
-          message: "Color no puede contener espacios consecutivos"
-      }),
+      .min(1, { message: 'Color no puede estar vacío.' })
+      .max(100,{message: 'Color no puede superar los 100 caracteres'})
+      .regex(/^[A-Za-z0-9áéíóúÁÉÍÓÚ\s]+$/,{ message: 'Color contiene caracteres no permitidos.' })
+      .regex(/^(?!.*\s{2,}).*$/, { message: "Color no puede contener espacios consecutivos"})
+      .refine((val) => !(val.length === 1 && val === ' '), { message: 'Color no puede estar vacío.' }) ,
 });

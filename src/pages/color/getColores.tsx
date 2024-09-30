@@ -1,8 +1,7 @@
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-
-import Style from "../../components/categorias/TodasCategorias/todasCategorias.module.css"
+import Style from '../../components/categorias/todasCategorias.module.css';
 import { useEffect, useState } from 'react';
 
 interface Data {
@@ -36,15 +35,21 @@ export default function CheckboxList({ refresh }: { refresh: boolean }) {
         const labelId = `checkbox-list-label-${idx}`;
 
         return (
+        <div className={Style.container}>
           <ListItem
             key={idx}
             disablePadding
             className={Style.contCategorias}
+            
           > 
-              <ListItemText id={labelId} primary={`${color.nombre}`} className={Style.item} />
-          </ListItem>
+              <ListItemText id={labelId} primary={`${color.nombre}`} className={Style.item}  />
+          </ListItem >
+          </div>
+          
         );
       })}
     </List>
+  
   );
+  
 }

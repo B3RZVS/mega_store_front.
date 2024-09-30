@@ -4,12 +4,10 @@ export const validationsMarca=z.object({
 nombre:z
     
 .string()
-.trim() // Eliminar espacios en blanco al inicio y al final
-.min(3, { message: 'Marca debe tener más de 3 caracteres.' })
-.regex(/^[a-zA-Z0-9\s]+$/, { message: 'Marca no puede contener caracteres especiales.' })
-.regex(/^(?!.*\s{2,}).*$/, {
-    message: "Marca no puede contener espacios consecutivos"
-  }),
-
+.min(1, { message: 'Marca no puede estar vacío.' })
+.max(100,{message: 'Marca no puede superar los 100 caracteres'})
+.regex(/^(?!.*\s{2,}).*$/, { message: "Marca no puede contener espacios consecutivos" })
+.regex(/^[A-Za-z0-9áéíóúÁÉÍÓÚ\s]+$/,{ message: 'Marca contiene caracteres no permitidos.' })
+.refine((val) => !(val.length === 1 && val === ' '), { message: 'Marca no puede estar vacío.' }) ,
 
 });

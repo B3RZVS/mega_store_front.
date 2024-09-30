@@ -39,7 +39,7 @@ input {/* Espaciado inferior si el input está seguido por otro elemento */
     border-radius: 20px;
     text-align:center;
     font-size:13px;
-    width: 200px;
+    width: 400px;
 }
 
 .button{ /*Ajuste de botones*/
